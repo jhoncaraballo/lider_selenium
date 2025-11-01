@@ -1,19 +1,8 @@
 # lider_selenium
 
-## Requisitos
-
-- Python 3.13.x
-- pytest
-
-
-
-pip install selenium webdriver-manager
-
-informacion .env
-
 # Framework de automatización de pruebas para Lider.cl desarrollado en Python con Selenium y Pytest.
 
-📋 Descripción
+# Descripción
 Este proyecto contiene tests automatizados para las funcionalidades  de Lider.cl, incluyendo:
 
 - Flujo de compras (agregar productos al carrito)
@@ -34,3 +23,21 @@ Este proyecto contiene tests automatizados para las funcionalidades  de Lider.cl
         cd lider_selenium
 
 2. Crear entorno virtual
+        python -m venv venv
+        source venv/bin/activate  # Linux/Mac
+        venv\Scripts\activate     # Windows
+
+3. Instalar dependencias
+        pip install -r requeriments.txt
+
+## Ejecucion de pruebas
+De la siguiente manera se ejecutara el test y se generara un reporte con el resultado del test
+
+- Ejecutar todos los test
+        pytest test/ -v --html=report.html -s
+
+- Ejecutar individualmente
+        pytest test/test_seleccion_categoria.py -v --html=report_categoria.html -s
+        pytest test/test_carro_compras.py -v --html=report_carro.html -s   
+        pytest test/test_login.py -v --html=report_login.html -s         
+
