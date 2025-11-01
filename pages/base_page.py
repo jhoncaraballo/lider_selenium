@@ -1,3 +1,4 @@
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
@@ -35,3 +36,31 @@ class BasePage:
             return True
         except TimeoutException:
             return False
+        
+    def is_perimeterx_present(self):
+        """Detecta si PerimeterX está bloqueando (iframe o contenedor)"""
+        selectors = [
+            ".px-captcha-container",
+            "iframe[title*='verificación']",
+            "iframe[src*='perimeterx']",
+            "div[id*='px']"
+        ]
+        return any(self.driver.find_elements(By.CSS_SELECTOR, sel) for sel in selectors)
+
+    def handle_perimeterx(self):
+        """Resuelve PerimeterX si aparece. Se puede llamar en cualquier punto."""
+        if self.is_perimeterx_present():
+            print("PERIMETERX DETECTADO! Resuelve manualmente...")
+            self.driver.save_screenshot("perimeterx_detected.png")
+            input("Presiona ENTER cuando desaparezca el desafío...")
+            self.human_delay(2, 4)  # Espera estabilización
+            return True
+        return False
+    
+    def click_first_banner(self):
+        banner = self.wait.until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, 'section[data-dca-id="M:164C43B0BC"] img#hero_1'))
+        )
+        self.scroll_to_element(banner)
+        self.click_with_human_behavior(banner)
+        print("Clic en el primer banner realizado.")
