@@ -17,6 +17,10 @@ Este proyecto contiene tests automatizados para las funcionalidades  de Lider.cl
 - Pytest Framework de testing
 - Pytest-html para reportes
 
+## Archivo .env
+
+- Ingresa un mail valido para la prueba
+
 ## Instalacion
 1. Clonar repositorio 
         git clone <https://github.com/jhoncaraballo/lider_selenium>
@@ -39,5 +43,4 @@ De la siguiente manera se ejecutara el test y se generara un reporte con el resu
 - Ejecutar individualmente
         pytest test/test_seleccion_categoria.py -v --html=report_categoria.html -s
         pytest test/test_carro_compras.py -v --html=report_carro.html -s   
-        pytest test/test_login.py -v --html=report_login.html -s         
-
+        pytest test/test_login.py -v --html=report_login.html -s   
